@@ -1,0 +1,13 @@
+*~
+node_modules/
+build/
+leapchat
+
+# bower static assets
+static/lib/
+
+# docker container volumes
+_docker-volumes/
+
+# Editors
+.vscode/

@@ -1,0 +1,343 @@
+html, body, ul {
+  padding: 0;
+  margin: 0; }
+
+body {
+  color: #222;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+}
+
+// Desktop - Max height & width
+@media (min-width: 768px) {
+  #page {
+    display: flex;
+    flex-direction: row;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+}
+
+// Mobile - Max & min height
+@media (max-width: 767px) {
+  #page {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    min-height: 100vh;
+    header {
+      flex: 1;
+    }
+    main {
+      flex: 1;
+    }
+  }
+}
+
+
+.encloser {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .encloser {
+    flex-direction: column;
+  }
+}
+
+// HEADER - mobile settings
+header {
+  display: flex;
+  background-color: $base-color;
+  color: #fff;
+  padding: 10px 10px 5px;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  min-height: fit-content;
+
+  .users-icon {
+    order: -1;
+    flex-grow: 1;
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  .users-list {
+    flex: 0 1 100%;
+
+    ul {
+      display: none;
+      list-style-type: none;
+      li {
+        svg {
+          float: left;
+        }
+      }
+    }
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+
+  .logo {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .settings {
+  }
+}
+
+// HEADER - desktop settings
+@media (min-width: 768px) {
+  header {
+    flex: 1;
+    display: inline-flex;
+    max-width: 306px;
+    flex-direction: column;
+    justify-content: start;
+    height: 100vh;
+
+    .logo-container {
+      margin-bottom: 15px;
+      order: -1;
+      flex-grow: 0;
+    }
+
+    .settings {
+      float: right;
+      margin-left: auto;
+      cursor: pointer;
+    }
+
+    .info {
+      float: left;
+    }
+
+    .users-icon {
+      display: none;
+    }
+
+    .users-list {
+      flex-grow: 0;
+      flex: none;
+
+      ul {
+        display: block !important;
+        li {
+          margin-bottom: 1px;
+          word-wrap: break-word;
+          svg {
+            float: left;
+            margin-top: 0.2em;
+          }
+        }
+      }
+    }
+  }
+  .modal-header {
+    border-bottom: none;
+  }
+  .message{
+    display: flex;
+    flex-direction: row;
+  }
+  .form-control {
+    flex-grow: 2;
+    border: none;
+  }
+  .chat-icons {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+  }
+  .emoji-picker-icon {
+    float: left;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+}
+
+// MAIN - mobile settings
+main {
+
+  display: flex;
+  flex-grow: 1;
+  max-width: 100vw;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+
+    .message-box {
+        // scroll with flexbox needs revisiting
+        // for now, message box is viewport height
+        // less display height of message form
+        // + display height of header
+        height: calc(100vh - 120px);
+        overflow-y: scroll;
+        padding-top: 5px;
+
+      ul {
+        li.chat-message {
+          display: inline-block;
+          border: solid 1px #eee;
+          border-radius: 10px;
+          padding: 5px 10px;
+          margin-bottom: 5px;
+          width: 90%;
+          word-wrap: break-word;
+
+          .username {
+            display: block;
+            font-weight: bold;
+          }
+
+          &.chat-outgoing {
+            float: right;
+            color: white;
+            background-color: #663399;
+
+            a {
+              text-decoration: underline;
+              color: white;
+            }
+
+            a:hover {
+              color: #ddd;
+            }
+          }
+
+          &.chat-incoming {
+            float: left;
+            color: #333;
+          }
+
+          ul {
+            list-style-type: disc;
+            margin-left: 20px;
+          }
+
+          img[src^='/static/img/emoji'] {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            background-size: 100%;
+            vertical-align: bottom;
+          }
+        }
+      }
+    }
+
+    .message-list {
+      padding: 0 15px;
+    }
+
+    .message-form {
+      padding: 5px;
+      background-color: white;
+      border-top: solid 1px #ccc;
+      margin-top: auto;
+
+      .message {
+        display: flex;
+
+        textarea {
+          /* this font-size disables zooming
+          on mobile safari, which breaks layout */
+          font-size: 16px;
+        }
+      }
+
+      button {
+        border: none;
+        padding: 5px;
+        float: right;
+        height: 54px;
+        vertical-align: bottom;
+
+        i {
+          color: #1e202f;
+        }
+      }
+    }
+  } // end .content
+} // end main
+
+// MAIN - desktop settings
+@media (min-width: 768px) {
+  main {
+    display: inline-flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: start;
+    height: 100vh;
+    width: 50vw !important;
+
+    .content {
+      max-width: 100%;
+      .message-box{
+        // scroll with flexbox needs revisiting
+        // for now, message box is viewport height
+        // less display height of message form
+        height: calc(100vh - 70px);
+      }
+    }
+  }
+}
+
+// Alert styles, overrides default bootstrap
+// styles for positioning
+.alert-container {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  right: 10px;
+  font-size: 14px;
+  z-index: 10;
+
+  .alert {
+    padding: 5px 15px;
+
+    &.alert-dismissable {
+      .close {
+        right: auto;
+      }
+    }
+  }
+}
+
+// Info Positioning relative to Logo
+#logo-info {
+  display: inherit;
+  .info {
+    padding-left: 15px;
+    svg {
+      vertical-align: top;
+      cursor: pointer;
+    }
+  }
+}
+
+// Cursor effect over Settings button
+.settings {
+  svg {
+    cursor: pointer;
+  }
+}
+
+// Allows textarea to by dynamic instead of static
+textarea {
+  box-sizing: border-box !important;
+  max-height: 40vh !important;
+  width: 100% !important;
+}
